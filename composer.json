@@ -1,7 +1,7 @@
 {
     "name": "dreadfulcode/eloquent-model-generator",
     "description": "Eloquent Model Generator",
-    "version": "2.0.1",
+    "version": "2.0",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -20,7 +20,7 @@
         "illuminate/config": "*",
         "illuminate/console": "*",
         "doctrine/dbal": "*",
-        "krlove/code-generator": "^1.0"
+        "krlove/code-generator": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
