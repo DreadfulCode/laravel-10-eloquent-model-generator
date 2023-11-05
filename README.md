@@ -6,8 +6,8 @@
 
 Eloquent Model Generator generates Eloquent models using database schema as a source.
 
-## Version 1.0.0
-Improvements: Added phpstan, php-cs-fixer, latest phpunit version,
+## Version 2.0.2
+Improvements: Forked and changed namespace, updated Composer, added phpstan, added php-cs-fixer, updated to latest phpunit version,
 
 ## Installation
 Step 1. Add Eloquent Model Generator to your project:
