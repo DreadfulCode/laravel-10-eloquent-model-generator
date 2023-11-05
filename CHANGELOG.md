@@ -1,9 +1,14 @@
 CHANGELOG
 =========
+
+2023-11-05, v2.0.2
+Begin the fork
+
+
 2022-11-20, v2.0.1
 -----------------
-* Restore service autodiscovery (issue [#92](https://github.com/dreadfulcode/eloquent-model-generator/issues/92))
-* Actually register custom sql type mappings (issue [#97](https://github.com/dreadfulcode/eloquent-model-generator/issues/97))
+* Restore service autodiscovery (issue [#92](https://github.com/krlove/eloquent-model-generator/issues/92))
+* Actually register custom sql type mappings (issue [#97](https://github.com/krlove/eloquent-model-generator/issues/97))
 
 2022-02-19, v2.0.0
 -----------------
@@ -28,11 +33,11 @@ CHANGELOG
 
 2020-09-04, v1.3.5
 -----------------
-* Merged PR [#69](https://github.com/dreadfulcode/eloquent-model-generator/pull/69) (Update composer.json)
+* Merged PR [#69](https://github.com/krlove/eloquent-model-generator/pull/69) (Update composer.json)
 
 2019-11-03, v1.3.4
 -----------------
-* Add quote for table prefix (issue [#59](https://github.com/dreadfulcode/eloquent-model-generator/issues/59))
+* Add quote for table prefix (issue [#59](https://github.com/krlove/eloquent-model-generator/issues/59))
 
 2019-10-12, v1.3.3
 -----------------
@@ -40,21 +45,21 @@ CHANGELOG
 
 2019-03-02, v1.3.2
 -----------------
-* Merged PR [#49](https://github.com/dreadfulcode/eloquent-model-generator/pull/49) (Compatible with Laravel 5.8)
+* Merged PR [#49](https://github.com/krlove/eloquent-model-generator/pull/49) (Compatible with Laravel 5.8)
 
 2018-07-26, v1.3.1
 -----------------
-* Add package autodiscovery feature (issue [#37](https://github.com/dreadfulcode/eloquent-model-generator/issues/37))
-* Introduce backup option for saving existing model file (issue [#32](https://github.com/dreadfulcode/eloquent-model-generator/issues/32))
+* Add package autodiscovery feature (issue [#37](https://github.com/krlove/eloquent-model-generator/issues/37))
+* Introduce backup option for saving existing model file (issue [#32](https://github.com/krlove/eloquent-model-generator/issues/32))
 
 2018-07-22, v1.3.0
 -----------------
-* Add lumen Support (issue [#33](https://github.com/dreadfulcode/eloquent-model-generator/issues/33))
+* Add lumen Support (issue [#33](https://github.com/krlove/eloquent-model-generator/issues/33))
 * Perform minor code style changes
 
 2018-07-15, v1.2.7
 -----------------
-* Merged PR [#36](https://github.com/dreadfulcode/eloquent-model-generator/pull/36) (Change `incrementing` property to `public`)
+* Merged PR [#36](https://github.com/krlove/eloquent-model-generator/pull/36) (Change `incrementing` property to `public`)
 
 2017-07-19, v1.2.6
 -----------------
@@ -66,7 +71,7 @@ CHANGELOG
 
 2017-06-23, v1.2.4
 -----------------
-* Fixed issue [#25](https://github.com/dreadfulcode/eloquent-model-generator/issues/25)
+* Fixed issue [#25](https://github.com/krlove/eloquent-model-generator/issues/25)
 
 2016-08-20, v1.2.0
 -----------------
