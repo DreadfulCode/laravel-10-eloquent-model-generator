@@ -1,11 +1,13 @@
-# Eloquent Model Generator
+# Eloquent Model Generator for Laravel 10
+
+<p>Updated with the latest composer dependencies and thoroughly tested </p>
 
 <p align="center"> <a href="https://how-to-help-ukraine-now.super.site" target="_blank"> <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/313/flag-ukraine_1f1fa-1f1e6.png" alt="Ukraine" width="50" height="50"/> </a>
 
 Eloquent Model Generator generates Eloquent models using database schema as a source.
 
-## Version 2.0.0
-Version 2.0.0 has been released. Checkout [this discussion](https://github.com/dreadfulcode/eloquent-model-generator/discussions/89) for more details and upgrade instructions.
+## Version 1.0.0
+Improvements: Added phpstan, php-cs-fixer, latest phpunit version,
 
 ## Installation
 Step 1. Add Eloquent Model Generator to your project:
