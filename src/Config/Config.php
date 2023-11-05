@@ -1,6 +1,6 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Config;
+namespace Dreadfulcode\EloquentModelGenerator\Config;
 
 class Config
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Exception;
+namespace Dreadfulcode\EloquentModelGenerator\Exception;
 
 class GeneratorException extends \Exception
 {

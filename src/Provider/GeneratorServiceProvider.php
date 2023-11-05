@@ -1,21 +1,21 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Provider;
+namespace Dreadfulcode\EloquentModelGenerator\Provider;
 
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Krlove\EloquentModelGenerator\Command\GenerateModelCommand;
-use Krlove\EloquentModelGenerator\Command\GenerateModelsCommand;
-use Krlove\EloquentModelGenerator\EventListener\GenerateCommandEventListener;
-use Krlove\EloquentModelGenerator\Generator;
-use Krlove\EloquentModelGenerator\Processor\CustomPrimaryKeyProcessor;
-use Krlove\EloquentModelGenerator\Processor\CustomPropertyProcessor;
-use Krlove\EloquentModelGenerator\Processor\FieldProcessor;
-use Krlove\EloquentModelGenerator\Processor\NamespaceProcessor;
-use Krlove\EloquentModelGenerator\Processor\RelationProcessor;
-use Krlove\EloquentModelGenerator\Processor\TableNameProcessor;
-use Krlove\EloquentModelGenerator\TypeRegistry;
+use Dreadfulcode\EloquentModelGenerator\Command\GenerateModelCommand;
+use Dreadfulcode\EloquentModelGenerator\Command\GenerateModelsCommand;
+use Dreadfulcode\EloquentModelGenerator\EventListener\GenerateCommandEventListener;
+use Dreadfulcode\EloquentModelGenerator\Generator;
+use Dreadfulcode\EloquentModelGenerator\Processor\CustomPrimaryKeyProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\CustomPropertyProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\FieldProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\NamespaceProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\RelationProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\TableNameProcessor;
+use Dreadfulcode\EloquentModelGenerator\TypeRegistry;
 
 class GeneratorServiceProvider extends ServiceProvider
 {

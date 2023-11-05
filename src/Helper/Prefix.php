@@ -1,6 +1,6 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Helper;
+namespace Dreadfulcode\EloquentModelGenerator\Helper;
 
 class Prefix
 {

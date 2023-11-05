@@ -1,6 +1,6 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator;
+namespace Dreadfulcode\EloquentModelGenerator;
 
 use Illuminate\Database\DatabaseManager;
 

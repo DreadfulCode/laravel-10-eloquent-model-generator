@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany as EloquentBelongsToMan
 use Illuminate\Database\Eloquent\Relations\HasMany as EloquentHasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne as EloquentHasOne;
 use Illuminate\Support\Str;
-use Krlove\CodeGenerator\Model\ClassModel;
-use Krlove\CodeGenerator\Model\DocBlockModel;
-use Krlove\CodeGenerator\Model\MethodModel;
-use Krlove\CodeGenerator\Model\VirtualPropertyModel;
+use Krlove\CodeGenerator\Model\ClassModel\Model\ClassModel;
+use Krlove\CodeGenerator\Model\ClassModel\Model\DocBlockModel;
+use Krlove\CodeGenerator\Model\ClassModel\Model\MethodModel;
+use Krlove\CodeGenerator\Model\ClassModel\Model\VirtualPropertyModel;
 use Dreadfulcode\EloquentModelGenerator\Exception\GeneratorException;
 use Dreadfulcode\EloquentModelGenerator\Helper\EmgHelper;
 

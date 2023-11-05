@@ -1,11 +1,11 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator;
+namespace Dreadfulcode\EloquentModelGenerator;
 
 use IteratorAggregate;
-use Krlove\EloquentModelGenerator\Config\Config;
-use Krlove\EloquentModelGenerator\Model\EloquentModel;
-use Krlove\EloquentModelGenerator\Processor\ProcessorInterface;
+use Dreadfulcode\EloquentModelGenerator\Config\Config;
+use Dreadfulcode\EloquentModelGenerator\Model\EloquentModel;
+use Dreadfulcode\EloquentModelGenerator\Processor\ProcessorInterface;
 
 class Generator
 {
