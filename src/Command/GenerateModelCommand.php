@@ -1,18 +1,18 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Command;
+namespace Dreadfulcode\EloquentModelGenerator\Command;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\DatabaseManager;
-use Krlove\EloquentModelGenerator\Generator;
-use Krlove\EloquentModelGenerator\Helper\Prefix;
+use Dreadfulcode\EloquentModelGenerator\Generator;
+use Dreadfulcode\EloquentModelGenerator\Helper\Prefix;
 use Symfony\Component\Console\Input\InputArgument;
 
 class GenerateModelCommand extends Command
 {
     use GenerateCommandTrait;
 
-    protected $name = 'krlove:generate:model';
+    protected $name = 'dreadfulcode:generate:model';
 
     public function __construct(private Generator $generator, private DatabaseManager $databaseManager)
     {

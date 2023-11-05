@@ -1,21 +1,21 @@
 <?php
 
-namespace Krlove\Tests\Integration;
+namespace Dreadfulcode\Tests\Integration;
 
 use Illuminate\Database\Connectors\SQLiteConnector;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\SQLiteConnection;
-use Krlove\EloquentModelGenerator\Config\Config;
-use Krlove\EloquentModelGenerator\Generator;
-use Krlove\EloquentModelGenerator\Helper\EmgHelper;
-use Krlove\EloquentModelGenerator\Processor\CustomPrimaryKeyProcessor;
-use Krlove\EloquentModelGenerator\Processor\CustomPropertyProcessor;
-use Krlove\EloquentModelGenerator\Processor\FieldProcessor;
-use Krlove\EloquentModelGenerator\Processor\NamespaceProcessor;
-use Krlove\EloquentModelGenerator\Processor\RelationProcessor;
-use Krlove\EloquentModelGenerator\Processor\TableNameProcessor;
-use Krlove\EloquentModelGenerator\TypeRegistry;
+use Dreadfulcode\EloquentModelGenerator\Config\Config;
+use Dreadfulcode\EloquentModelGenerator\Generator;
+use Dreadfulcode\EloquentModelGenerator\Helper\EmgHelper;
+use Dreadfulcode\EloquentModelGenerator\Processor\CustomPrimaryKeyProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\CustomPropertyProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\FieldProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\NamespaceProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\RelationProcessor;
+use Dreadfulcode\EloquentModelGenerator\Processor\TableNameProcessor;
+use Dreadfulcode\EloquentModelGenerator\TypeRegistry;
 use PHPUnit\Framework\TestCase;
 use ArrayIterator;
 
@@ -62,7 +62,7 @@ class GeneratorTest extends TestCase
             new TableNameProcessor($databaseManagerMock),
         ]);
 
-        
+
     }
 
     /**
@@ -79,9 +79,9 @@ class GeneratorTest extends TestCase
         $this->assertEquals(file_get_contents(__DIR__ . '/resources/' . $modelName . '.php.generated'), $model->render());
     }
 
-/**
- * @return array<array<string, string>>
- */
+    /**
+     * @return array<array<string, string>>
+     */
 
     public static function modelNameProvider(): array
     {

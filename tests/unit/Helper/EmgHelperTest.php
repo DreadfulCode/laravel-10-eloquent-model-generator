@@ -5,7 +5,7 @@ namespace unit\Helper;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Table;
 use Illuminate\Database\Eloquent\Model;
-use Krlove\EloquentModelGenerator\Helper\EmgHelper;
+use Dreadfulcode\EloquentModelGenerator\Helper\EmgHelper;
 use PHPUnit\Framework\TestCase;
 
 class EmgHelperTest extends TestCase
@@ -18,9 +18,9 @@ class EmgHelperTest extends TestCase
         self::assertSame($expected, EmgHelper::getShortClassName($fqcn));
     }
 
-/**
- * @return array<int, array<string, string>>  // Specify the type hint for FQCNs (e.g., string)
- */
+    /**
+     * @return array<int, array<string, string>>  // Specify the type hint for FQCNs (e.g., string)
+     */
 
     public static function fqcnProvider(): array
     {
@@ -60,9 +60,9 @@ class EmgHelperTest extends TestCase
         $this->assertEquals($expected, EmgHelper::getClassNameByTableName($tableName));
     }
 
-/**
- * @return array<int, array<string, string>>  // Specify the type hint for tableNameToClassNameProvider
- */
+    /**
+     * @return array<int, array<string, string>>  // Specify the type hint for tableNameToClassNameProvider
+     */
     public static function tableNameToClassNameProvider(): array
     {
         return [
@@ -81,8 +81,8 @@ class EmgHelperTest extends TestCase
         $this->assertEquals($expected, EmgHelper::getDefaultForeignColumnName($tableName));
     }
 
-    
-            /**
+
+    /**
  * @return array<int, array<string, string>>  // Specify the type hint for tableNameToForeignColumnNameProvider
  */
     public static function tableNameToForeignColumnNameProvider(): array
@@ -102,9 +102,9 @@ class EmgHelperTest extends TestCase
         self::assertSame($expected, EmgHelper::getDefaultJoinTableName($tableNameOne, $tableNameTwo));
     }
 
-/**
- * @return array<int, array<string, string>>  // Specify the type hint for tableNamesProvider
- */
+    /**
+     * @return array<int, array<string, string>>  // Specify the type hint for tableNamesProvider
+     */
     public static function tableNamesProvider(): array
     {
         return [

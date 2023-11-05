@@ -1,15 +1,15 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\EventListener;
+namespace Dreadfulcode\EloquentModelGenerator\EventListener;
 
 use Illuminate\Console\Events\CommandStarting;
-use Krlove\EloquentModelGenerator\TypeRegistry;
+use Dreadfulcode\EloquentModelGenerator\TypeRegistry;
 
 class GenerateCommandEventListener
 {
     private const SUPPORTED_COMMANDS = [
-        'krlove:generate:model',
-        'krlove:generate:models',
+        'dreadfulcode:generate:model',
+        'dreadfulcode:generate:models',
     ];
 
     public function __construct(private TypeRegistry $typeRegistry)

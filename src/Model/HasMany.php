@@ -1,6 +1,6 @@
 <?php
 
-namespace Krlove\EloquentModelGenerator\Model;
+namespace Dreadfulcode\EloquentModelGenerator\Model;
 
 class HasMany extends Relation
 {

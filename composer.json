@@ -1,16 +1,16 @@
 {
-    "name": "krlove/eloquent-model-generator",
+    "name": "dreadfulcode/eloquent-model-generator",
     "description": "Eloquent Model Generator",
     "version": "2.0.1",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Krlove\\EloquentModelGenerator\\": "src/"
+            "Dreadfulcode\\EloquentModelGenerator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Krlove\\Tests\\Integration\\": "tests/integration"
+            "Dreadfulcode\\Tests\\Integration\\": "tests/integration"
         }
     },
     "require": {
@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Krlove\\EloquentModelGenerator\\Provider\\GeneratorServiceProvider"
+                "Dreadfulcode\\EloquentModelGenerator\\Provider\\GeneratorServiceProvider"
             ]
         }
     }
