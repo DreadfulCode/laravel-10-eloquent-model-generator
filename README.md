@@ -12,7 +12,7 @@ Improvements: Added phpstan, php-cs-fixer, latest phpunit version,
 ## Installation
 Step 1. Add Eloquent Model Generator to your project:
 ```
-composer require dreadfulcode/eloquent-model-generator --dev
+composer require dreadfulcode/eloquent-model-generator dev-2x --dev 
 ```
 Step 2. Register `GeneratorServiceProvider`:
 ```php
