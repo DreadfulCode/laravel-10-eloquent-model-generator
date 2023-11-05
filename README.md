@@ -14,7 +14,7 @@ Step 1. Add Eloquent Model Generator to your project:
 ```
 composer require dreadfulcode/eloquent-model-generator dev-2x --dev 
 ```
-Step 2. Register `GeneratorServiceProvider`:
+Step 2. Confirm that the `Dreadfulcode\EloquentModelGenerator\Provider` is in `GeneratorServiceProvider`:
 ```php
 'providers' => [
     // ...
@@ -22,7 +22,11 @@ Step 2. Register `GeneratorServiceProvider`:
 ];
 ```
 
-Step 3. Configure your database connection.
+Step 3. Configure your database connection. 
+
+This project was test driven with SQLite3.
+For Sqlite3 on Ubuntu 22.x, PHP 8.1:
+`sudo apt-get install php8.1-sqlite3`
 
 ## Usage
 Use
