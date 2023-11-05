@@ -1,8 +1,8 @@
 # Eloquent Model Generator for Laravel 10
 
-<p>Updated with the latest composer dependencies and thoroughly tested </p>
+<p>Updated with the latest composer dependencies for Laravel 10, tested on SQlite and Postgres</p>
 
-<p align="center"> <a href="https://how-to-help-ukraine-now.super.site" target="_blank"> <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/313/flag-ukraine_1f1fa-1f1e6.png" alt="Ukraine" width="50" height="50"/> </a>
+<p align="center">Coming Soon: Better Postgres Support & CI/CD support for contributors.</p>
 
 Eloquent Model Generator generates Eloquent models using database schema as a source.
 
