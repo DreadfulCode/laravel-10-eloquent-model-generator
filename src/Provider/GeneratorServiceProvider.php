@@ -17,17 +17,12 @@ use Dreadfulcode\EloquentModelGenerator\Processor\RelationProcessor;
 use Dreadfulcode\EloquentModelGenerator\Processor\TableNameProcessor;
 use Dreadfulcode\EloquentModelGenerator\TypeRegistry;
 
-class GeneratorServiceProvider extends ServiceProvider
+class GeneratorServiceProvider extends ServiceProvider implements \Illuminate\Contracts\Support\DeferrableProvider
 {
     public const PROCESSOR_TAG = 'eloquent_model_generator.processor';
 
     public function register()
     {
-        $this->commands([
-            GenerateModelCommand::class,
-            GenerateModelsCommand::class,
-        ]);
-
         $this->app->singleton(TypeRegistry::class);
         $this->app->singleton(GenerateCommandEventListener::class);
 
@@ -43,10 +38,26 @@ class GeneratorServiceProvider extends ServiceProvider
         $this->app->bind(Generator::class, function ($app) {
             return new Generator($app->tagged(self::PROCESSOR_TAG));
         });
+
+        $this->commands([
+            GenerateModelCommand::class,
+            GenerateModelsCommand::class,
+        ]);
     }
 
     public function boot()
     {
         Event::listen(CommandStarting::class, [GenerateCommandEventListener::class, 'handle']);
+    }
+
+    public function provides(): array
+    {
+        return [
+            Generator::class,
+            TypeRegistry::class,
+            GenerateCommandEventListener::class,
+            GenerateModelCommand::class,
+            GenerateModelsCommand::class,
+        ];
     }
 }

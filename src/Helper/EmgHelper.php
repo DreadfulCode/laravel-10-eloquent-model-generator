@@ -2,7 +2,7 @@
 
 namespace Dreadfulcode\EloquentModelGenerator\Helper;
 
-use Doctrine\DBAL\Schema\Table;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class EmgHelper
@@ -39,15 +39,16 @@ class EmgHelper
         return implode('_', $tables);
     }
 
-    public static function isColumnUnique(Table $table, string $column): bool
+    public static function isColumnUnique(string $tableName, string $column, ?string $connection = null): bool
     {
-        foreach ($table->getIndexes() as $index) {
-            $indexColumns = $index->getColumns();
+        $indexes = Schema::connection($connection)->getIndexes($tableName);
+
+        foreach ($indexes as $index) {
+            $indexColumns = $index['columns'];
             if (count($indexColumns) !== 1) {
                 continue;
             }
-            $indexColumn = $indexColumns[0];
-            if ($indexColumn === $column && $index->isUnique()) {
+            if ($indexColumns[0] === $column && $index['unique']) {
                 return true;
             }
         }

@@ -2,59 +2,60 @@
 
 namespace Dreadfulcode\EloquentModelGenerator;
 
-use Illuminate\Database\DatabaseManager;
-
-/**
- * array<string, string>
- */
-
 class TypeRegistry
 {
     protected array $types = [
         'array'        => 'array',
         'simple_array' => 'array',
         'json_array'   => 'string',
+        'json'         => 'string',
+        'jsonb'        => 'string',
         'bigint'       => 'integer',
+        'bigserial'    => 'integer',
         'boolean'      => 'boolean',
+        'bool'         => 'boolean',
         'datetime'     => 'string',
         'datetimetz'   => 'string',
         'date'         => 'string',
         'time'         => 'string',
+        'timestamp'    => 'string',
+        'timestamptz'  => 'string',
         'decimal'      => 'float',
+        'numeric'      => 'float',
+        'double'       => 'float',
+        'real'         => 'float',
         'integer'      => 'integer',
-        'object'       => 'object',
+        'int'          => 'integer',
+        'int4'         => 'integer',
+        'int8'         => 'integer',
+        'serial'       => 'integer',
         'smallint'     => 'integer',
+        'smallserial'  => 'integer',
+        'mediumint'    => 'integer',
+        'tinyint'      => 'integer',
+        'object'       => 'object',
         'string'       => 'string',
+        'varchar'      => 'string',
+        'char'         => 'string',
+        'character varying' => 'string',
         'text'         => 'string',
+        'mediumtext'   => 'string',
+        'longtext'     => 'string',
         'binary'       => 'string',
         'blob'         => 'string',
         'float'        => 'float',
         'guid'         => 'string',
+        'uuid'         => 'string',
         'enum'         => 'string',
     ];
 
-    public function __construct(private DatabaseManager $databaseManager)
-    {
-        foreach ($this->types as $sqlType => $phpType) {
-            $this->registerDoctrineTypeMapping($sqlType, $phpType);
-        }
-    }
-
-    public function registerType(string $sqlType, string $phpType, string $connection = null): void
+    public function registerType(string $sqlType, string $phpType): void
     {
         $this->types[$sqlType] = $phpType;
-
-        $this->registerDoctrineTypeMapping($sqlType, $phpType, $connection);
     }
 
     public function resolveType(string $type): string
     {
-        return array_key_exists($type, $this->types) ? $this->types[$type] : 'mixed';
-    }
-
-    private function registerDoctrineTypeMapping(string $sqlType, string $phpType, string $connection = null): void
-    {
-        $manager = $this->databaseManager->connection($connection)->getDoctrineSchemaManager();
-        $manager->getDatabasePlatform()->registerDoctrineTypeMapping($sqlType, $phpType);
+        return $this->types[$type] ?? 'mixed';
     }
 }
