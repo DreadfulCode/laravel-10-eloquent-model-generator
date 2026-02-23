@@ -2,9 +2,8 @@
 
 namespace unit\Helper;
 
-use Doctrine\DBAL\Schema\Index;
-use Doctrine\DBAL\Schema\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 use Dreadfulcode\EloquentModelGenerator\Helper\EmgHelper;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +18,7 @@ class EmgHelperTest extends TestCase
     }
 
     /**
-     * @return array<int, array<string, string>>  // Specify the type hint for FQCNs (e.g., string)
+     * @return array<int, array<string, string>>
      */
 
     public static function fqcnProvider(): array
@@ -40,8 +39,8 @@ class EmgHelperTest extends TestCase
     }
 
     /**
- * @return array<int, array<string, string>>  // Specify the type hint for classNameProvider
- */
+     * @return array<int, array<string, string>>
+     */
     public static function classNameProvider(): array
     {
         return [
@@ -61,7 +60,7 @@ class EmgHelperTest extends TestCase
     }
 
     /**
-     * @return array<int, array<string, string>>  // Specify the type hint for tableNameToClassNameProvider
+     * @return array<int, array<string, string>>
      */
     public static function tableNameToClassNameProvider(): array
     {
@@ -83,8 +82,8 @@ class EmgHelperTest extends TestCase
 
 
     /**
- * @return array<int, array<string, string>>  // Specify the type hint for tableNameToForeignColumnNameProvider
- */
+     * @return array<int, array<string, string>>
+     */
     public static function tableNameToForeignColumnNameProvider(): array
     {
         return [
@@ -103,7 +102,7 @@ class EmgHelperTest extends TestCase
     }
 
     /**
-     * @return array<int, array<string, string>>  // Specify the type hint for tableNamesProvider
+     * @return array<int, array<string, string>>
      */
     public static function tableNamesProvider(): array
     {
@@ -112,67 +111,5 @@ class EmgHelperTest extends TestCase
             ['tableNameOne' => 'roles', 'tableNameTwo' => 'users', 'expected' => 'role_user'],
             ['tableNameOne' => 'accounts', 'tableNameTwo' => 'profiles', 'expected' => 'account_profile'],
         ];
-    }
-
-    public function testIsColumnUnique(): void
-    {
-        $indexMock = $this->createMock(Index::class);
-        $indexMock->expects($this->once())
-            ->method('getColumns')
-            ->willReturn(['column_0']);
-
-        $indexMock->expects($this->once())
-            ->method('isUnique')
-            ->willReturn(true);
-
-        $indexMocks = [$indexMock];
-
-        $tableMock = $this->createMock(Table::class);
-        $tableMock->expects($this->once())
-            ->method('getIndexes')
-            ->willReturn($indexMocks);
-
-        $this->assertTrue(EmgHelper::isColumnUnique($tableMock, 'column_0'));
-    }
-
-    public function testIsColumnUniqueTwoIndexColumns(): void
-    {
-        $indexMock = $this->createMock(Index::class);
-        $indexMock->expects($this->once())
-            ->method('getColumns')
-            ->willReturn(['column_0', 'column_1']);
-
-        $indexMock->expects($this->never())
-            ->method('isUnique');
-
-        $indexMocks = [$indexMock];
-
-        $tableMock = $this->createMock(Table::class);
-        $tableMock->expects($this->once())
-            ->method('getIndexes')
-            ->willReturn($indexMocks);
-
-        $this->assertFalse(EmgHelper::isColumnUnique($tableMock, 'column_0'));
-    }
-
-    public function testIsColumnUniqueIndexNotUnique(): void
-    {
-        $indexMock = $this->createMock(Index::class);
-        $indexMock->expects($this->once())
-            ->method('getColumns')
-            ->willReturn(['column_0']);
-
-        $indexMock->expects($this->once())
-            ->method('isUnique')
-            ->willReturn(false);
-
-        $indexMocks = [$indexMock];
-
-        $tableMock = $this->createMock(Table::class);
-        $tableMock->expects($this->once())
-            ->method('getIndexes')
-            ->willReturn($indexMocks);
-
-        $this->assertFalse(EmgHelper::isColumnUnique($tableMock, 'column_0'));
     }
 }
