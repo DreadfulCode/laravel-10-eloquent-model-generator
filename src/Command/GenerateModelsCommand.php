@@ -2,9 +2,9 @@
 
 namespace Dreadfulcode\EloquentModelGenerator\Command;
 
-use Illuminate\Config\Repository as AppConfig;
 use Illuminate\Console\Command;
 use Illuminate\Database\DatabaseManager;
+use Illuminate\Support\Facades\Schema;
 use Dreadfulcode\EloquentModelGenerator\Generator;
 use Dreadfulcode\EloquentModelGenerator\Helper\EmgHelper;
 use Dreadfulcode\EloquentModelGenerator\Helper\Prefix;
@@ -24,13 +24,14 @@ class GenerateModelsCommand extends Command
     public function handle()
     {
         $config = $this->createConfig();
-        Prefix::setPrefix($this->databaseManager->connection($config->getConnection())->getTablePrefix());
+        $connection = $config->getConnection();
+        Prefix::setPrefix($this->databaseManager->connection($connection)->getTablePrefix());
 
-        $schemaManager = $this->databaseManager->connection($config->getConnection())->getDoctrineSchemaManager();
-        $tables = $schemaManager->listTables();
+        $tables = Schema::connection($connection)->getTables();
         $skipTables = $this->option('skip-table');
+
         foreach ($tables as $table) {
-            $tableName = Prefix::remove($table->getName());
+            $tableName = Prefix::remove($table['name']);
             if (in_array($tableName, $skipTables)) {
                 continue;
             }

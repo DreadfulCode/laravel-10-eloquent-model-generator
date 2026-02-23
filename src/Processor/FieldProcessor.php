@@ -2,7 +2,7 @@
 
 namespace Dreadfulcode\EloquentModelGenerator\Processor;
 
-use Illuminate\Database\DatabaseManager;
+use Illuminate\Support\Facades\Schema;
 use Krlove\CodeGenerator\Model\DocBlockModel;
 use Krlove\CodeGenerator\Model\PropertyModel;
 use Krlove\CodeGenerator\Model\VirtualPropertyModel;
@@ -13,26 +13,28 @@ use Dreadfulcode\EloquentModelGenerator\TypeRegistry;
 
 class FieldProcessor implements ProcessorInterface
 {
-    public function __construct(private DatabaseManager $databaseManager, private TypeRegistry $typeRegistry)
+    public function __construct(private TypeRegistry $typeRegistry)
     {
     }
 
     public function process(EloquentModel $model, Config $config): void
     {
-        $schemaManager = $this->databaseManager->connection($config->getConnection())->getDoctrineSchemaManager();
+        $tableName = Prefix::add($model->getTableName());
+        $connection = $config->getConnection();
+        $schema = Schema::connection($connection);
 
-        $tableDetails = $schemaManager->listTableDetails(Prefix::add($model->getTableName()));
-        $primaryColumnNames = $tableDetails->getPrimaryKey() ? $tableDetails->getPrimaryKey()->getColumns() : [];
+        $columns = $schema->getColumns($tableName);
+        $primaryColumnNames = $this->getPrimaryKeyColumns($schema, $tableName);
 
         $columnNames = [];
-        foreach ($tableDetails->getColumns() as $column) {
+        foreach ($columns as $column) {
             $model->addProperty(new VirtualPropertyModel(
-                $column->getName(),
-                $this->typeRegistry->resolveType($column->getType()->getName())
+                $column['name'],
+                $this->typeRegistry->resolveType($column['type_name'])
             ));
 
-            if (!in_array($column->getName(), $primaryColumnNames)) {
-                $columnNames[] = $column->getName();
+            if (!in_array($column['name'], $primaryColumnNames)) {
+                $columnNames[] = $column['name'];
             }
         }
 
@@ -41,6 +43,19 @@ class FieldProcessor implements ProcessorInterface
             ->setValue($columnNames)
             ->setDocBlock(new DocBlockModel('@var array'));
         $model->addProperty($fillableProperty);
+    }
+
+    private function getPrimaryKeyColumns($schema, string $tableName): array
+    {
+        $indexes = $schema->getIndexes($tableName);
+
+        foreach ($indexes as $index) {
+            if ($index['primary'] ?? false) {
+                return $index['columns'];
+            }
+        }
+
+        return [];
     }
 
     public function getPriority(): int
