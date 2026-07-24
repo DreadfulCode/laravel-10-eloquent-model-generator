@@ -2,20 +2,29 @@
 
 namespace Dreadfulcode\EloquentModelGenerator\Command;
 
-use Illuminate\Database\Eloquent\Model;
 use Dreadfulcode\EloquentModelGenerator\Config\Config;
 use Dreadfulcode\EloquentModelGenerator\Exception\GeneratorException;
 use Dreadfulcode\EloquentModelGenerator\Model\EloquentModel;
+use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Console\Input\InputOption;
 
 trait GenerateCommandTrait
 {
     protected function createConfig(): Config
     {
-        return (new Config())
+        $namespace = $this->option('namespace');
+        if ($namespace !== null && ! preg_match('/^[A-Za-z_][A-Za-z0-9_]*(?:\\\\[A-Za-z_][A-Za-z0-9_]*)*$/', $namespace)) {
+            throw new GeneratorException(sprintf('Invalid namespace %s', $namespace));
+        }
+        $baseClassName = $this->option('base-class-name');
+        if ($baseClassName !== null && ! preg_match('/^\\\\?[A-Za-z_][A-Za-z0-9_]*(?:\\\\[A-Za-z_][A-Za-z0-9_]*)*$/', $baseClassName)) {
+            throw new GeneratorException(sprintf('Invalid base class name %s', $baseClassName));
+        }
+
+        return (new Config)
             ->setTableName($this->option('table-name'))
-            ->setNamespace($this->option('namespace'))
-            ->setBaseClassName($this->option('base-class-name'))
+            ->setNamespace($namespace)
+            ->setBaseClassName($baseClassName)
             ->setNoTimestamps($this->option('no-timestamps'))
             ->setDateFormat($this->option('date-format'))
             ->setConnection($this->option('connection'));
@@ -25,9 +34,13 @@ trait GenerateCommandTrait
     {
         $content = $model->render();
 
-        $outputFilepath = $this->resolveOutputPath() . '/' . $model->getName()->getName() . '.php';
-        if (!$this->option('no-backup') && file_exists($outputFilepath)) {
-            rename($outputFilepath, $outputFilepath . '~');
+        $modelName = $model->getName()->getName();
+        if (! preg_match('/^[A-Za-z_][A-Za-z0-9_]*$/', $modelName)) {
+            throw new GeneratorException(sprintf('Invalid model class name %s', $modelName));
+        }
+        $outputFilepath = $this->resolveOutputPath().'/'.$modelName.'.php';
+        if (! $this->option('no-backup') && file_exists($outputFilepath)) {
+            rename($outputFilepath, $outputFilepath.'~');
         }
         file_put_contents($outputFilepath, $content);
     }
@@ -38,18 +51,18 @@ trait GenerateCommandTrait
         if ($path === null) {
             /* @phpstan-ignore-next-line */
             $path = app()->path('Models');
-        } elseif (!str_starts_with($path, '/')) {
+        } elseif (! str_starts_with($path, '/')) {
             /* @phpstan-ignore-next-line */
             $path = app()->path($path);
         }
 
-        if (!is_dir($path)) {
-            if (!mkdir($path, 0777, true)) {
+        if (! is_dir($path)) {
+            if (! mkdir($path, 0755, true)) {
                 throw new GeneratorException(sprintf('Could not create directory %s', $path));
             }
         }
 
-        if (!is_writeable($path)) {
+        if (! is_writable($path)) {
             throw new GeneratorException(sprintf('%s is not writeable', $path));
         }
 
